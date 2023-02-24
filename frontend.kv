@@ -1,0 +1,75 @@
+<CameraScreen>:
+    GridLayout:
+        cols: 1
+        spacing: 2
+        padding: 2
+        Camera:
+            id: webcamera
+            resolution: (1920, 1080)
+            play: False
+            size_hint_y: .8
+            opacity: 0
+        Button:
+            id: camera_button
+            text: "Start Camera"
+            size_hint_y: .1
+            on_press: root.start() if root.ids.webcamera.play == False else root.stop()
+            background_normal: "template_images/normal.png"
+            background_down: "template_images/down.png"
+        Button:
+            id: image_button
+            text: "Capture Image"
+            size_hint_y: .1
+            on_press: root.capture()
+            background_normal: "template_images/normal.png"
+            background_down: "template_images/down.png"
+
+<ImageScreen>:
+    GridLayout:
+        cols: 1
+        spacing: 2
+        padding: 2
+        Image:
+            id: img
+            size_hint_y: 0.7
+        Button: 
+            id: image_button
+            text: "Create Shareable Link"
+            on_press: root.update_label()
+            size_hint_y: 0.1
+            background_normal: "template_images/normal.png"
+            background_down: "template_images/down.png"
+
+        Label:
+            id: link_label
+            text: ""
+            size_hint_y: 0.1
+        GridLayout:
+            cols: 2
+            spacing: 2
+            size_hint_y: 0.1
+            Button:
+                text: "Copy Link"
+                on_press: root.copy_url()
+                background_normal: "template_images/normal.png"
+                background_down: "template_images/down.png"
+            Button:
+                text: "Open Link"
+                on_press: root.open_url()
+                background_normal: "template_images/normal.png"
+                background_down: "template_images/down.png"
+
+
+<RootWidget>:
+    canvas.before:
+        Color:
+            rgba: (.2, 1, .8, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    CameraScreen:
+        id: camera_screen
+        name: "camer_screen"
+    ImageScreen:
+        id: image_screen
+        name: "image_screen"
