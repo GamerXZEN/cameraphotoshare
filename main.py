@@ -65,7 +65,7 @@ class MainApp(App):
 
 
 class FileSharer:
-	def __init__(self, filepath=f"files/{current_time}.png", api_key="AmJkWTGMSxSKoGxC3EWHdz"):
+	def __init__(self, filepath=f"files/{current_time}.png", api_key=os.getenv("FILESTACk_API_KEY")):
 		self.filepath = filepath
 		self.api_key = api_key
 
